@@ -1,4 +1,5 @@
 import yfinance as yf
+import pandas as pd
 
 
 def fetch_stock_data(ticker, period='1mo'):
@@ -28,3 +29,9 @@ def notify_if_strong_fluctuations(data, threshold):
             print(f'Колебания цены превысили заданное значение на {fluctuation1 - threshold} процентов.')
     except Exception:
         print(f'Минимальная цена закрытия равна нулю. Непредвиденная ошибка')
+
+
+def export_data_to_csv(data, filename):
+    data_price = pd.DataFrame(data)
+    return data_price.to_csv(filename, sep=',', index=False)
+
