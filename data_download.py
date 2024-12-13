@@ -2,7 +2,7 @@ import yfinance as yf
 import pandas as pd
 
 
-def fetch_stock_data(ticker, period='1mo'):
+def fetch_stock_data(ticker, period):
     stock = yf.Ticker(ticker)
     data = stock.history(period=period)
     return data
@@ -34,4 +34,13 @@ def notify_if_strong_fluctuations(data, threshold):
 def export_data_to_csv(data, filename):
     data_price = pd.DataFrame(data)
     return data_price.to_csv(filename, sep=',', index=False)
+
+
+def calculate_bollinger(data, window_size=5):
+    data['Moving_Average'] = data['Close'].rolling(window=window_size).mean()
+    std = data['Close'].rolling(window=window_size).std()
+    data['bb_high'] = data['Moving_Average'] + 2 * std
+    data['bb_low'] = data['Moving_Average'] - 2 * std
+    return data
+
 
