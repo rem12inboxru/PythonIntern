@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-def create_and_save_plot(data, ticker, period, filename=None):
+def create_and_save_plot(data, ticker,start_data, end_data, filename=None):
     plt.figure(figsize=(10, 6))
 
     if 'Date' not in data:
@@ -29,7 +29,7 @@ def create_and_save_plot(data, ticker, period, filename=None):
     plt.legend()
 
     if filename is None:
-        filename = f"{ticker}_{period}_stock_price_chart.png"
+        filename = f"{ticker}_{start_data}_{end_data}_stock_price_chart.png"
 
     plt.savefig(filename)
     print(f"График сохранен как {filename}")

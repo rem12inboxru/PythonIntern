@@ -2,9 +2,12 @@ import yfinance as yf
 import pandas as pd
 
 
-def fetch_stock_data(ticker, period):
+def fetch_stock_data(ticker, start_data, end_data):
     stock = yf.Ticker(ticker)
-    data = stock.history(period=period)
+    data = pd.DataFrame()
+    #data = stock.history(period=period)
+    data1 = yf.download(ticker, start_data, end_data)
+    data['Close'] = data1['Close']
     return data
 
 
