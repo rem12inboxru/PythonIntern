@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-def create_and_save_plot(data, ticker,start_data, end_data, filename=None):
+def create_and_save_plot(data, ticker,start_data, end_data, index_style, filename=None):
     plt.figure(figsize=(10, 6))
 
     if 'Date' not in data:
@@ -26,6 +26,8 @@ def create_and_save_plot(data, ticker,start_data, end_data, filename=None):
     plt.title(f"{ticker} Цена акций с течением времени")
     plt.xlabel("Дата")
     plt.ylabel("Цена")
+    styles = plt.style.available
+    plt.style.use(styles[index_style])
     plt.legend()
 
     if filename is None:

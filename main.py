@@ -11,6 +11,7 @@ def main():
     #period = input("Введите период для данных (например, '1mo' для одного месяца): ")
     start_data = input("Введите дату начала наблюдения в формате гггг-мм-дд: ")
     end_data = input("Введите дату конца наблюдения в формате гггг-мм-дд: ")
+    index_style = int(input("Выберите стиль изображения графика (от 0 до 27 включительно): "))
 
 
     # Fetch stock data
@@ -22,7 +23,7 @@ def main():
     stock_data = dd.calculate_bollinger(stock_data)
 
     # Plot the data
-    dplt.create_and_save_plot(stock_data, ticker, start_data, end_data)
+    dplt.create_and_save_plot(stock_data, ticker, start_data, end_data, index_style)
 
 
 if __name__ == "__main__":
