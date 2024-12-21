@@ -3,9 +3,9 @@ import pandas as pd
 
 
 def fetch_stock_data(ticker, start_data, end_data):
-    stock = yf.Ticker(ticker)
+    #stock = yf.Ticker(ticker)
     data = pd.DataFrame()
-    #data = stock.history(period=period)
+    # data = stock.history(period=period)
     data1 = yf.download(ticker, start_data, end_data)
     data['Close'] = data1['Close']
     return data
@@ -47,3 +47,12 @@ def calculate_bollinger(data, window_size=5):
     return data
 
 
+def ind_stoch(data, window_size=5):
+    close_stoch = list(data['Close'])
+    y = []
+    for i in close_stoch:
+        x = ((i - min(close_stoch)) / (max(close_stoch) - min(close_stoch))) * 100
+        y.append(x)
+    data['KN'] = y
+    data['D'] = data['KN'].rolling(window=window_size).mean()
+    return data

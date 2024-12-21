@@ -21,6 +21,7 @@ def main():
     # Add moving average to the data
     stock_data = dd.add_moving_average(stock_data)
     stock_data = dd.calculate_bollinger(stock_data)
+    stock_data = dd.ind_stoch(stock_data)
 
     # Plot the data
     dplt.create_and_save_plot(stock_data, ticker, start_data, end_data, index_style)
