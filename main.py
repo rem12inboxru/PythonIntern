@@ -25,7 +25,7 @@ def main():
 
     # Plot the data
     dplt.create_and_save_plot(stock_data, ticker, start_data, end_data, index_style)
-
+    dplt.create_and_save_plotly(stock_data, ticker)
 
 if __name__ == "__main__":
     main()
